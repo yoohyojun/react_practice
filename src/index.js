@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import App2 from './App_useReducer';
 import App3 from './App_customHook';
+import App4 from './App_contextAPI';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App3 />
+    <App4 />
 );
 
 // If you want to start measuring performance in your app, pass a function
