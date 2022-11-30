@@ -1,7 +1,7 @@
 # 리액트 연습용 프로젝트
 
 ## 1장 리액트 입문
-  ● 1. 리액트는 어쩌다가 만들어 졌을까? (https://react.vlpt.us/basic/01-concept.html)\n
+  ● 1. 리액트는 어쩌다가 만들어 졌을까? (https://react.vlpt.us/basic/01-concept.html)  
   ● 2. 작업환경 준비 (https://react.vlpt.us/basic/02-prepare.html)
   ● 3. 나의 첫번째 리액트 컴포넌트 (https://react.vlpt.us/basic/03-first-component.html)
   ● 4. JSX (https://react.vlpt.us/basic/04-jsx.html)
