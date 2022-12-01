@@ -14,16 +14,16 @@ function countActiveUsers(users) {
 
 function App() {
 
-    const [ inputs, setInputs ] = useState({
+    const [inputs, setInputs] = useState({
         username: '',
-        email:''
+        email: ''
     });
 
-    const { username, email } = inputs;
+    const {username, email} = inputs;
 
     const onChange = useCallback(
         e => {
-            const { name, value } = e.target;
+            const {name, value} = e.target;
             setInputs({
                 ...inputs,
                 [name]: value
@@ -31,7 +31,7 @@ function App() {
         },
         [inputs]
     )
-    const [ users, setUsers ] = useState([
+    const [users, setUsers] = useState([
         {
             id: 1,
             username: 'velopert',
@@ -63,16 +63,16 @@ function App() {
             setUsers(users.concat(user));
             setInputs({
                 username: '',
-                email:''
+                email: ''
             });
             nextId.current += 1;
         }
-    ,[username, email])
+        , [username, email])
 
     const onRemove = useCallback(
-      id => {
-          setUsers(users.filter(user => user.id !== id));
-      }
+        id => {
+            setUsers(users.filter(user => user.id !== id));
+        }
     );
 
     const onToggle = useCallback(
@@ -89,7 +89,7 @@ function App() {
     // useMemo : 두번째 파라미터로 전달한 값이 변경되는 경우
     // 첫번째 함수를 이용해 연산하고
     // 값이 변경되지 않은 경우 이 전 값을 보여줌
-    const count = useMemo( () => countActiveUsers(users), []);
+    const count = useMemo(() => countActiveUsers(users), []);
     return (
         <>
             <CreateUser

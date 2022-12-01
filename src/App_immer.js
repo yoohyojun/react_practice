@@ -2,6 +2,7 @@ import React, { useReducer, useMemo, useCallback } from 'react';
 import UserList from './userList';
 import CreateUser from './CreateUser';
 import produce from 'immer';
+import Hello from "./Hello";
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -91,6 +92,7 @@ function App5() {
         />
         <UserList users={users} />
         <div>활성사용자 수 : {count}</div>
+        <Hello color='red' name='myname' />
       </UserDispatch.Provider>
   );
 }
