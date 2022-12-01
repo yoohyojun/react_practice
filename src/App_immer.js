@@ -1,6 +1,7 @@
 import React, { useReducer, useMemo, useCallback } from 'react';
 import UserList from './userList';
 import CreateUser from './CreateUser';
+import produce from 'immer';
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -45,18 +46,25 @@ function reducer(state, action) {
         }
       };
     case 'CREATE_USER':
-      return {
-        inputs: initialState.inputs,
-        users: state.users.concat(action.user)
-      };
+      return produce(state, draft => {
+        draft.users.push(action.user);
+      });
     case 'TOGGLE_USER':
-      return {
-        ...state,
-        users: state.users.map(user =>
-          user.id === action.id ? { ...user, active: !user.active } : user
-        )
-      };
+      return produce(state, draft => {
+        const user = draft.users.find(user => user.id == action.id);
+        user.active = !user.active;
+      });
     case 'REMOVE_USER':
+      return produce(state, draft => {
+        const index = state.users.findIndex(user => user.id == action.id);
+        const user2 = {
+          id: 5,
+          username: '123123132',
+          email: '123123@123123.com',
+          active: false
+        }
+        draft.users.splice(index, 2, user2);
+      });
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.id)
@@ -67,7 +75,7 @@ function reducer(state, action) {
 }
 export const UserDispatch = React.createContext(null);
 
-function App4() {
+function App5() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const { users } = state;
@@ -76,14 +84,14 @@ function App4() {
   const count = useMemo(() => countActiveUsers(users), [users]);
 
   return (
-    <UserDispatch.Provider value={dispatch}>
-      <CreateUser
-        username={username}
-        email={email}
-      />
-      <UserList users={users} />
-      <div>활성사용자 수 : {count}</div>
-    </UserDispatch.Provider>
+      <UserDispatch.Provider value={dispatch}>
+        <CreateUser
+            username={username}
+            email={email}
+        />
+        <UserList users={users} />
+        <div>활성사용자 수 : {count}</div>
+      </UserDispatch.Provider>
   );
 }
-export default App4
+export default App5
